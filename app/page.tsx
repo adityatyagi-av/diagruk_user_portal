@@ -1,9 +1,14 @@
-import React from 'react'
+'use client'
+import React,{FC,useState} from 'react'
 
-const page = () => {
-  return (
-    <div>page</div>
+interface Props{}
+
+const Page: FC<Props>=(props)=>{
+
+  return(
+    <div>
+
+    </div>
   )
 }
-
-export default page
+export default Page;
