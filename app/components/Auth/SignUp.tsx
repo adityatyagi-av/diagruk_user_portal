@@ -11,22 +11,25 @@ type Props = {
   setRoute: (route: string) => void;
 };
 const schema = Yup.object().shape({
+    name:Yup.string().required("Please entere your name"),
   email: Yup.string()
     .email("Invalid email")
     .required("Please enter your email"),
   password: Yup.string().required("Please enter your password").min(6),
 });
 
-const Login: FC<Props> = ({setRoute}) => {
+const SignUp: FC<Props> = ({setRoute}) => {
   const [show, setShow] = useState(false);
   const formik = useFormik({
     initialValues: {
+      name:"",
       email: "",
       password: "",
     },
     validationSchema: schema,
-    onSubmit: async ({ email, password }) => {
-      console.log(email, password);
+    onSubmit: async ({name, email, password }) => {
+      console.log(name,email, password);
+      setRoute("Verification")
     },
   });
 
@@ -35,6 +38,24 @@ const Login: FC<Props> = ({setRoute}) => {
     <>
       <form onSubmit={handleSubmit}>
         <div className="grid gap-4 py-4">
+        <div className="grid grid-cols-5 items-center gap-4">
+            <Label htmlFor="name" className="text-right">
+              Name
+            </Label>
+            <Input
+              id="name"
+              name="name"
+              value={values.name}
+              onChange={handleChange}
+              placeholder="Nawed Perwez"
+              className={`${
+                errors.name && touched.name && "border-red-500"
+              } col-span-3`}
+            />
+          </div>
+          {errors.name && touched.name && (
+            <span className="text-red-500 pt-2 block">{errors.name}</span>
+          )}
           <div className="grid grid-cols-5 items-center gap-4">
             <Label htmlFor="email" className="text-right">
               Email
@@ -90,9 +111,9 @@ const Login: FC<Props> = ({setRoute}) => {
         <Button type="submit" className="flex mx-auto w-full items-center justify-center ">Login</Button>
 
         <h5 className="text-center pt-4 text-black text-[14px]">
-            Not have any account?{" "}
+            Already have Account{" "}
             <span
-            className="text-[#2190ff] pl-1 cursor-pointer" onClick={()=>setRoute("Sign-Up")}
+            className="text-[#2190ff] pl-1 cursor-pointer" onClick={()=>setRoute('Login')}
             >Sign Up</span>
         </h5>
             
@@ -102,4 +123,4 @@ const Login: FC<Props> = ({setRoute}) => {
   );
 };
 
-export default Login;
+export default SignUp;

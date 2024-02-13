@@ -5,6 +5,8 @@ import {HiOutlineUserCircle } from "react-icons/hi";
 import NavItems from "../utils/NavItems";
 import Modal from "../utils/Modal";
 import Login from "./Auth/Login";
+import SignUp from "./Auth/SignUp";
+import Verification from "./Auth/Verification";
 
 
 type Props = {
@@ -15,7 +17,7 @@ type Props = {
   setRoute:  (route: string)=>void;
 };
 
-const Header: FC<Props> = ({activeItem,open,setOpen,route}) => {
+const Header: FC<Props> = ({activeItem,open,setOpen,route,setRoute}) => {
   const [active, setActive] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
     if(typeof window!=="undefined"){
@@ -65,10 +67,45 @@ const Header: FC<Props> = ({activeItem,open,setOpen,route}) => {
             <Modal
               open={open}
               setOpen={setOpen}
+              setRoute={setRoute}
               modalName="Login"
               modalDesc="Login now to your account"
               activeItem={activeItem}
               component={Login}
+            />
+          )}
+          </>
+        )
+      }
+      {
+        route==="Sign-Up"&&(
+          <>
+          {open&&(
+            <Modal
+              open={open}
+              setOpen={setOpen}
+              setRoute={setRoute}
+              modalName="SignUp"
+              modalDesc="SignUp to form a new account. It's free!"
+              activeItem={activeItem}
+              component={SignUp}
+            />
+          )}
+          </>
+        )
+      }
+      {
+        route==="Verification"&&(
+          <>
+          {open&&(
+            <Modal
+              open={open}
+              setOpen={setOpen}
+              setRoute={setRoute}
+              modalName="Verification"
+              modalDesc="Please enter the code to activate your account"
+              activeItem={activeItem}
+              component={Verification}
             />
           )}
           </>
