@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React,{FC} from 'react'
 
 interface Props{}
@@ -18,7 +19,7 @@ const Hero:FC<Props> = (props) => {
             </div>
 
             <div className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
-                <img className="w-full h-full lg:max-w-3xl" src="https://merakiui.com/images/components/Catalogue-pana.svg" alt="Catalogue-pana.svg"/>
+                <Image className="w-full h-full lg:max-w-3xl" src="https://merakiui.com/images/components/Catalogue-pana.svg" width={100} height={100} alt="Catalogue-pana.svg"/>
             </div>
         </div>
     </div>
