@@ -24,7 +24,8 @@ type Props = {
 
 const Modal:FC<Props>= ({open,setOpen,modalName,modalDesc,setRoute,component:Component}) => {
   return (
-    <Dialog>
+
+    <Dialog open={open} onOpenChange={setOpen}>
   <DialogTrigger asChild>
     <Button variant="outline">{modalName}</Button>
   </DialogTrigger>
